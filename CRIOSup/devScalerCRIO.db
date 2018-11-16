@@ -1,0 +1,17 @@
+grecord(scaler,"$(BL)$(SC)") {
+	field(DTYP,"$(DTYP)")
+	field(PRIO,"HIGH")
+	field(FREQ,"$(FREQ)")
+	field(OUT,"@$(SMN)")
+	field(TP,"1")
+	field(PREC,"3")
+	field(SCAN,".1 second")
+	field(RATE,"1")
+	field(G1,"N")
+	field(G2,"N")
+	field(NM1,"SC01")
+	field(NM2,"SC02")
+}
+
+
+
