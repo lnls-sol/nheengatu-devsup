@@ -16,7 +16,7 @@ devScalerCRIO_SYS_LIBS += CrioLinux
 
 # Install .dbd and .db files
 DBD += devScalerCRIO.dbd
-DB_INSTALLS += devScalerCRIO.db
+#DB_INSTALLS += devScalerCRIO.db
 
 #=======================================
 include $(TOP)/configure/RULES
