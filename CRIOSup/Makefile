@@ -6,7 +6,11 @@ include $(TOP)/configure/CONFIG
 LIBRARY_IOC += devSupCRIO
 
 # Library Source files
+devSupCRIO_SRCS += supBICRIO.cpp
 devSupCRIO_SRCS += supScalerCRIO.cpp
+devSupCRIO_SRCS += supAICRIO.cpp
+devSupCRIO_SRCS += supBOCRIO.cpp
+devSupCRIO_SRCS += supAOCRIO.cpp
 
 # Link with the asyn and base libraries
 devSupCRIO_LIBS += asyn

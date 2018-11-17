@@ -63,6 +63,7 @@ SCALERDSET devScalerCRIO = {
 
 extern "C" { epicsExportAddress(dset, devScalerCRIO); }
 
+extern struct crio_context *ctx;
 
 static long crio_scaler_report(int level)
 {
@@ -80,13 +81,16 @@ static long crio_scaler_init_record(struct scalerRecord *psr, CALLBACK *pcallbac
 {
     uint16_t nch;
     DEBUG(printf("[%s] called. Name is %s\n", __func__, psr->out.value.instio.string));
-    char cfg[] = "/home/ABTLUS/dawood.alnajjar/work/git/crio-linux-libs/cfg/scaler.ini";
-    // alocate memory for ctx
-    struct crio_context * ctx = new struct crio_context;
-    // save ctx on record dpvt field
-    psr->dpvt = ctx;
+
+    if (ctx == NULL)
+    {
+        errlogPrintf("%s ctx global was also null. Scaler init failed.\n", __func__);
+        return -1;
+    }
+    psr->dpvt = (void *) ctx;
+    struct crio_context *ctx = (struct crio_context *)psr->dpvt;
+
     try {
-        crioSetup(ctx, cfg);
         crioGetNumOfCounters(ctx, psr->name, &nch);
         psr->nch = static_cast<epicsInt16>(nch);
     }
