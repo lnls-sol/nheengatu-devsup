@@ -10,7 +10,6 @@
 #include "errlog.h"
 #include <CrioLinux.h>
 
-#include <pthread.h>
 
 
 static long crio_ai_init_rec(aiRecord *BaseRecord);

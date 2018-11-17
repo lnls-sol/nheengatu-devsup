@@ -8,8 +8,8 @@
 #include <unistd.h>
 #include <epicsExport.h>
 #include "errlog.h"
-#include <CrioLinux.h>
 
+#include <CrioLinux.h>
 
 static long crio_bi_init_rec(biRecord *BaseRecord);
 static long crio_bi_read(biRecord *BaseRecord);
