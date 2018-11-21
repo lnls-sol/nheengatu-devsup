@@ -11,7 +11,6 @@
 #include <CrioLinux.h>
 
 
-
 static long crio_ai_init_rec(aiRecord *BaseRecord);
 static long crio_ai_read(aiRecord *BaseRecord);
 static long crio_ai_init_dev(int param);
@@ -62,7 +61,6 @@ static long crio_ai_init_rec(aiRecord *BaseRecord) {
 static long crio_ai_read(aiRecord *BaseRecord) {
     double item;
     struct crio_context *ctx;
-
     ctx = (struct crio_context *)BaseRecord->dpvt;
     auto name = BaseRecord->inp.value.instio.string;
 
@@ -73,9 +71,11 @@ static long crio_ai_read(aiRecord *BaseRecord) {
         errlogPrintf("Error on read - %s \n", e.error_text);
         return -1;
     }
-    BaseRecord->rval = static_cast<epicsInt32>(item);
 
-    return 0;
+    BaseRecord->udf = FALSE;
+    BaseRecord->val = item;
+
+    return 2;
 }
 
 
