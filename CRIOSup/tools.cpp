@@ -1,14 +1,10 @@
-/* File: smtools.c                     */
-
-/* Common library to access PXI shared memory */
-/*
- *      Original Authors: Márcio Paduan Donadio
- *                        Diego de Oliveira Omitto
- *      Contributor: Marco Raulik
+/*****************************************************************
  *
- *      Date: 5/Apr/2012
+ *      Author      : Dawood Alnajjar
+ *      description : Support function to setup CRIO environment
+ *      Date        : 21/11/2018
  *
- */
+ *****************************************************************/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -22,11 +18,11 @@
 #include <CrioLinux.h>
 
 int iocBootComplete = 0;
-int debugVar = 0;
+int debugCRIOSupVar = 0;
 
 extern struct crio_context * ctx;
 
-epicsExportAddress(int, debugVar);
+epicsExportAddress(int, debugCRIOSupVar);
 
 static void inithooks(initHookState state);
 
@@ -38,6 +34,14 @@ static void crioSupSetup(char *path_to_cfgfile, int print_version, const iocshAr
     if (!iocBootComplete) {
         if (print_version == 1)
             printLibVersion();
+        ctx = new struct crio_context;
+
+        try {
+            crioSetup(ctx, path_to_cfgfile);
+        }
+            catch(CrioLibException &e) {
+            errlogPrintf("Error on initialization - %s \n", e.error_text);
+        }
     } else
         printf("Setup cannot be done after IOC boot completion. Call this function before IOCINIT...\n");
 }

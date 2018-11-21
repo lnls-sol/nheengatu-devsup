@@ -44,20 +44,7 @@ struct crio_context * ctx = NULL;
 
 static long crio_ai_init_dev(int parm)
 {
-    char cfg[] = "/home/ABTLUS/dawood.alnajjar/work/git/crio-linux-libs/cfg/cfg.ini";
-    if(parm==0) {
-
-        ctx = new struct crio_context;
-
-        try {
-            crioSetup(ctx, cfg);
-        }
-            catch(CrioLibException &e) {
-            errlogPrintf("Error on initialization - %s \n", e.error_text);
-            return 0;
-        }
-    }
-    return(-1);
+    return 0;
 }
 
 
