@@ -66,20 +66,6 @@ extern "C" { epicsExportAddress(dset, devScalerCRIO); }
 extern struct crio_context *ctx;
 
 
-static char * get_name(char * full_name)
-{
-    uint i;
-    for( i = 0; full_name[i] != ':'; i++)
-    {
-        if (full_name[i] == '\0')
-            break;
-    }
-    if (full_name[i] == '\0')
-        return NULL;
-    else
-        return &full_name[i+1];
-}
-
 static long crio_scaler_report(int level)
 {
     DEBUG(printf("[%s] called. level is %d.\n", __func__, level));
@@ -105,13 +91,8 @@ static long crio_scaler_init_record(struct scalerRecord *psr, CALLBACK *pcallbac
     psr->dpvt = (void *) ctx;
     struct crio_context *ctx = (struct crio_context *)psr->dpvt;
 
-    char * name = get_name(psr->name);
-    if (name == NULL){
-        errlogPrintf("%s No : found in scaler name [%s]\n", __func__, psr->name);
-        return -1;
-    }
     try {
-        crioGetNumOfCounters(ctx, name, &nch);
+        crioGetNumOfCounters(ctx, psr->out.value.instio.string, &nch);
         psr->nch = static_cast<epicsInt16>(nch);
     }
     catch(CrioLibException &e) {
@@ -132,13 +113,8 @@ static long crio_scaler_reset(scalerRecord *psr)
     DEBUG(printf("[%s] called name is = %s\n", __func__, psr->name));
     struct crio_context * ctx;
     ctx = (struct crio_context *)psr->dpvt;
-    char * name = get_name(psr->name);
-    if (name == NULL){
-        errlogPrintf("%s No : found in scaler name [%s]\n", __func__, psr->name);
-        return -1;
-    }
     try {
-        crioSetScalerReset(ctx, name);
+        crioSetScalerReset(ctx, psr->out.value.instio.string);
     }
     catch(CrioLibException &e) {
         errlogPrintf("Error on initialization - %s \n", e.error_text);
@@ -152,13 +128,8 @@ static long crio_scaler_read(scalerRecord *psr, epicsUInt32 *val)
     DEBUG(printf("[%s] called\n", __func__));
     struct crio_context * ctx;
     ctx = (struct crio_context *)psr->dpvt;
-    char * name = get_name(psr->name);
-    if (name == NULL){
-        errlogPrintf("%s No : found in scaler name [%s]\n", __func__, psr->name);
-        return -1;
-    }
     try {
-        crioGetScalerCounters(ctx, name, val);
+        crioGetScalerCounters(ctx, psr->out.value.instio.string, val);
     }
     catch(CrioLibException &e) {
         errlogPrintf("Error on initialization - %s \n", e.error_text);
@@ -172,13 +143,8 @@ static long crio_scaler_write_preset(scalerRecord *psr, int signal, epicsUInt32 
     DEBUG(printf("[%s] called. Signal = %d, val = %u\n", __func__, signal, val));
     struct crio_context * ctx;
     ctx = (struct crio_context *)psr->dpvt;
-    char * name = get_name(psr->name);
-    if (name == NULL){
-        errlogPrintf("%s No : found in scaler name [%s]\n", __func__, psr->name);
-        return -1;
-    }
     try {
-        crioSetScalerPresetsGates(ctx, name, signal, val);
+        crioSetScalerPresetsGates(ctx, psr->out.value.instio.string, signal, val);
     }
     catch(CrioLibException &e) {
         errlogPrintf("Error on initialization - %s \n", e.error_text);
@@ -192,13 +158,8 @@ static long crio_scaler_arm(scalerRecord *psr, int val)
     DEBUG(printf("[%s] called. Val = %d\n", __func__, val));
     struct crio_context * ctx;
     ctx = (struct crio_context *)psr->dpvt;
-    char * name = get_name(psr->name);
-    if (name == NULL){
-        errlogPrintf("%s No : found in scaler name [%s]\n", __func__, psr->name);
-        return -1;
-    }
     try {
-        crioSetScalerArm(ctx, name, val, true);
+        crioSetScalerArm(ctx, psr->out.value.instio.string, val, true);
     }
     catch(CrioLibException &e) {
         errlogPrintf("Error on initialization - %s \n", e.error_text);
@@ -213,13 +174,8 @@ static long crio_scaler_done(scalerRecord *psr)
     struct crio_context * ctx;
     ctx = (struct crio_context *)psr->dpvt;
     bool done = false;
-    char * name = get_name(psr->name);
-    if (name == NULL){
-        errlogPrintf("%s No : found in scaler name [%s]\n", __func__, psr->name);
-        return -1;
-    }
     try {
-        crioGetScalerDone(ctx, name, &done);
+        crioGetScalerDone(ctx, psr->out.value.instio.string, &done);
         return done;
     }
     catch(CrioLibException &e) {
