@@ -14,8 +14,8 @@ devSupCRIO_SRCS += supBOCRIO.cpp
 devSupCRIO_SRCS += tools.cpp
 
 # Link with the asyn and base libraries
-devSupCRIO_LIBS += asyn
-devSupCRIO_LIBS += std
+#devSupCRIO_LIBS += asyn
+#devSupCRIO_LIBS += std
 devSupCRIO_LIBS += $(EPICS_BASE_IOC_LIBS)
 devSupCRIO_SYS_LIBS += CrioLinux
 
