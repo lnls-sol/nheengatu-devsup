@@ -8,13 +8,9 @@
 # INSTALL_LOCATION_APP here:
 #INSTALL_LOCATION_APP=<fullpathname>
 
-# Define path to sequencer if needed
-#SNCSEQ=/usr/local/epics/synApps_5_8/support/seq-2-2-1
-
 # Asyn
-ASYN = /usr/local/epics/synApps_5_8/support/asyn-4-26/
-
-STD = /usr/local/epics/synApps_5_8/support/std-3-4
+ASYN = /usr/local/epics-nfs/modules/R3.14.12.8/synApps/R5.8/support/asyn-4-26/
+STD = /usr/local/epics-nfs/modules/R3.14.12.8/synApps/R5.8/support/std-3-4/
 
 # EPICS_BASE usually appears last so other apps can preempt definitions
-EPICS_BASE=/usr/local/epics/base
+EPICS_BASE=/usr/local/epics-nfs/base/R3.14.12.8/
