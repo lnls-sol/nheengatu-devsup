@@ -9,8 +9,8 @@
 #INSTALL_LOCATION_APP=<fullpathname>
 
 # Asyn
-ASYN = /usr/local/epics-nfs/modules/R3.14.12.8/synApps/R5.8/support/asyn-4-26/
-STD = /usr/local/epics-nfs/modules/R3.14.12.8/synApps/R5.8/support/std-3-4/
+#ASYN = /usr/local/epics-nfs/modules/R3.15.6/synApps/R6.0/support/asyn-R4-33/
+STD = /usr/local/epics-nfs/modules/R3.15.6/synApps/R6.0/support/std-R3-5/
 
 # EPICS_BASE usually appears last so other apps can preempt definitions
-EPICS_BASE=/usr/local/epics-nfs/base/R3.14.12.8/
+EPICS_BASE=/usr/local/epics-nfs/base/R3.15.6/
