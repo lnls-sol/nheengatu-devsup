@@ -11,7 +11,9 @@ devSupCRIO_SRCS += supBICRIO.cpp
 devSupCRIO_SRCS += supAICRIO.cpp
 devSupCRIO_SRCS += supAOCRIO.cpp
 devSupCRIO_SRCS += supBOCRIO.cpp
+devSupCRIO_SRCS += supWAVEFORMCRIO.cpp
 devSupCRIO_SRCS += tools.cpp
+
 
 # Link with the asyn and base libraries
 #devSupCRIO_LIBS += asyn
