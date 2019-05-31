@@ -41,6 +41,7 @@ static void crioSupSetup(char *path_to_cfgfile, int print_version, const iocshAr
         }
             catch(CrioLibException &e) {
             errlogPrintf("Error on initialization - %s \n", e.error_text);
+            epicsExit(-1);
         }
     } else
         printf("Setup cannot be done after IOC boot completion. Call this function before IOCINIT...\n");
