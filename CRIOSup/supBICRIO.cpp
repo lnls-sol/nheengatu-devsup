@@ -63,7 +63,7 @@ static long crio_bi_read(biRecord *BaseRecord) {
        crioGetBIArrayItemByName(ctx, &item, name);
     }
     catch (CrioLibException &e) {
-        errlogPrintf("Error on read - %s \n", e.error_text);
+        errlogPrintf("Error on BI read - %s \n", e.error_text);
         return -1;
     }
     BaseRecord->rval = item;

@@ -96,7 +96,7 @@ static long crio_scaler_init_record(struct scalerRecord *psr, CALLBACK *pcallbac
         psr->nch = static_cast<epicsInt16>(nch);
     }
     catch(CrioLibException &e) {
-        errlogPrintf("Error on initialization - %s \n", e.error_text);
+        errlogPrintf("Error on initialization - scaler - %s \n", e.error_text);
         return -1;
     }
     return 0;
@@ -117,7 +117,7 @@ static long crio_scaler_reset(scalerRecord *psr)
         crioSetScalerReset(ctx, psr->out.value.instio.string);
     }
     catch(CrioLibException &e) {
-        errlogPrintf("Error on initialization - %s \n", e.error_text);
+        errlogPrintf("Error on scaler reset - %s \n", e.error_text);
         return -1;
     }
     return 0;
@@ -132,7 +132,7 @@ static long crio_scaler_read(scalerRecord *psr, epicsUInt32 *val)
         crioGetScalerCounters(ctx, psr->out.value.instio.string, val);
     }
     catch(CrioLibException &e) {
-        errlogPrintf("Error on initialization - %s \n", e.error_text);
+        errlogPrintf("Error on scaler counter read - %s \n", e.error_text);
         return -1;
     }
     return 0;
@@ -147,7 +147,7 @@ static long crio_scaler_write_preset(scalerRecord *psr, int signal, epicsUInt32 
         crioSetScalerPresetsGates(ctx, psr->out.value.instio.string, signal, val);
     }
     catch(CrioLibException &e) {
-        errlogPrintf("Error on initialization - %s \n", e.error_text);
+        errlogPrintf("Error on scaler preset write - %s \n", e.error_text);
         return -1;
     }
     return 0;
@@ -162,7 +162,7 @@ static long crio_scaler_arm(scalerRecord *psr, int val)
         crioSetScalerArm(ctx, psr->out.value.instio.string, val, true);
     }
     catch(CrioLibException &e) {
-        errlogPrintf("Error on initialization - %s \n", e.error_text);
+        errlogPrintf("Error on scaler arm write - %s \n", e.error_text);
         return -1;
     }
     return 0;
@@ -179,7 +179,7 @@ static long crio_scaler_done(scalerRecord *psr)
         return done;
     }
     catch(CrioLibException &e) {
-        errlogPrintf("Error on initialization - %s \n", e.error_text);
+        errlogPrintf("Error on scaler done read - %s \n", e.error_text);
         return false;
     }
     return false;

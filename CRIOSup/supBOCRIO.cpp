@@ -57,7 +57,7 @@ static long crio_bo_write(boRecord *BaseRecord) {
        crioSetBOItem(ctx, name, BaseRecord->val);
     }
     catch (CrioLibException &e) {
-        errlogPrintf("Error on read - %s \n", e.error_text);
+        errlogPrintf("Error on BO write - %s \n", e.error_text);
         return -1;
     }
 

@@ -65,7 +65,7 @@ static long crio_ao_write(aoRecord *BaseRecord) {
        crioSetAOItem(ctx, name, BaseRecord->val);
     }
     catch (CrioLibException &e) {
-        errlogPrintf("Error on read - %s \n", e.error_text);
+        errlogPrintf("Error on AO write - %s \n", e.error_text);
         return -1;
     }
 

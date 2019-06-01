@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <epicsExport.h>
 #include "errlog.h"
-
+#include "dbAccess.h"
 #include <CrioLinux.h>
 
 static long crio_waveform_init_rec(waveformRecord *BaseRecord);
@@ -58,15 +58,16 @@ static long crio_waveform_read(waveformRecord *BaseRecord) {
 
     ctx = (struct crio_context *)BaseRecord->dpvt;
     auto name = BaseRecord->inp.value.instio.string;
-
     try{
-        crioGetWaveformItem(ctx, name, BaseRecord->bptr, &(BaseRecord->nord));
+        uint64_t max_size = BaseRecord->nelm * dbValueSize(BaseRecord->ftvl);
+        crioGetWaveformItem(ctx, name, BaseRecord->bptr, &(BaseRecord->nord), max_size);
     }
     catch (CrioLibException &e) {
-        errlogPrintf("Error on read - %s \n", e.error_text);
+        errlogPrintf("Error on Waveform read - %s \n", e.error_text);
         return -1;
     }
     return 0;
+
 }
 
 

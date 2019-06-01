@@ -68,7 +68,7 @@ static long crio_ai_read(aiRecord *BaseRecord) {
        crioGetAIItem(ctx, name, item);
     }
     catch (CrioLibException &e) {
-        errlogPrintf("Error on read - %s \n", e.error_text);
+        errlogPrintf("Error on AI read - %s \n", e.error_text);
         return -1;
     }
 
