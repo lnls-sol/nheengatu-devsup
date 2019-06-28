@@ -18,11 +18,11 @@
 #include <CrioLinux.h>
 
 int iocBootComplete = 0;
-int debugCRIOSupVar = 0;
+int CRIODebug = 0;
 
 extern struct crio_context * ctx;
 
-epicsExportAddress(int, debugCRIOSupVar);
+epicsExportAddress(int, CRIODebug);
 
 static void inithooks(initHookState state);
 
@@ -75,3 +75,18 @@ static void CRIOreg(void) {
         iocshRegister(&crioSupSetupFuncDef, crioSupSetupCallFunc);
 }
 epicsExportRegistrar(CRIOreg);
+
+
+static const iocshArg crioDebugArg0 = { "Enable Debug", iocshArgInt };
+static const iocshArg * const crioDebugArgs[1] = { &crioDebugArg0 };
+static const iocshFuncDef crioDebugFuncDef = { "crioDebug", 1, crioDebugArgs };
+static void crioDebugCallFunc(const iocshArgBuf *args) {
+    debug(ctx, args[0].ival);
+}
+
+static void CRIODebugReg(void) {
+        initHookRegister(&inithooks);
+        iocshRegister(&crioDebugFuncDef, crioDebugCallFunc);
+}
+epicsExportRegistrar(CRIODebugReg);
+
