@@ -27,7 +27,7 @@ epicsExportAddress(int, CRIODebug);
 static void inithooks(initHookState state);
 
 
-static void crioSupSetup(char *path_to_cfgfile, int print_version, const iocshArgBuf params) {
+static void crioSupSetup(char *path_to_cfgfile, int print_version) {
 
 
     /* Prevents someone calling crioSupSetup after ioc boot */
@@ -67,7 +67,7 @@ static const iocshArg * const crioSupSetupArgs[3] = { &crioSupSetupArg0, &crioSu
 static const iocshFuncDef crioSupSetupFuncDef = { "crioSupSetup", 3, crioSupSetupArgs };
 
 static void crioSupSetupCallFunc(const iocshArgBuf *args) {
-    crioSupSetup(args[0].sval, args[1].ival, args[2]);
+    crioSupSetup(args[0].sval, args[1].ival);
 }
 
 static void CRIOreg(void) {
