@@ -11,6 +11,8 @@ devSupCRIO_SRCS += supBICRIO.cpp
 devSupCRIO_SRCS += supAICRIO.cpp
 devSupCRIO_SRCS += supAOCRIO.cpp
 devSupCRIO_SRCS += supBOCRIO.cpp
+devSupCRIO_SRCS += supMBBOCRIO.cpp
+devSupCRIO_SRCS += supMBBICRIO.cpp
 devSupCRIO_SRCS += supWAVEFORMCRIO.cpp
 devSupCRIO_SRCS += tools.cpp
 
