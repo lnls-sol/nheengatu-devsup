@@ -71,10 +71,9 @@ static long crio_mbbi_read(mbbiRecord *BaseRecord) {
         return -1;
     }
 
-    BaseRecord->udf = FALSE;
-    BaseRecord->val = item;
+    BaseRecord->rval = item;
 
-    return 2;
+    return 0;
 }
 
 

@@ -55,12 +55,10 @@ static long crio_mbbo_init_rec(mbboRecord *BaseRecord) {
 
 static long crio_mbbo_write(mbboRecord *BaseRecord) {
     struct crio_context *ctx;
-
     ctx = (struct crio_context *)BaseRecord->dpvt;
     auto name = BaseRecord->out.value.instio.string;
-
     try{
-       crioSetMBBOItem(ctx, name, BaseRecord->val);
+       crioSetMBBOItem(ctx, name, BaseRecord->rval);
     }
     catch (CrioLibException &e) {
         errlogPrintf("Error on MBBO write - %s \n", e.error_text);
