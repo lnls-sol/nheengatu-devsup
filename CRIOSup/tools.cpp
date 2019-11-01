@@ -47,14 +47,14 @@ static void crioSupSetup(char *path_to_cfgfile, int print_version) {
         printf("Setup cannot be done after IOC boot completion. Call this function before IOCINIT...\n");
 }
 
-static void crioCleaup(void *param) {
+static void crioCleanupCaller(void *param) {
     crioCleanup((struct crio_context*) ctx);
 }
 
 static void inithooks(initHookState state) {
     iocBootComplete = (state == initHookAfterIocRunning);
     if (iocBootComplete)
-        epicsAtExit(crioCleaup, NULL);
+        epicsAtExit(crioCleanupCaller, NULL);
 }
 
 /* Shell command to create shared memory access */
