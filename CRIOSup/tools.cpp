@@ -60,11 +60,10 @@ static void inithooks(initHookState state) {
 /* Shell command to create shared memory access */
 static const iocshArg crioSupSetupArg0 = { "Path to configuration file", iocshArgString };
 static const iocshArg crioSupSetupArg1 = { "Print libCrioLinux version", iocshArgInt };
-static const iocshArg crioSupSetupArg2 = { "Parameters", iocshArgArgv };
 
-static const iocshArg * const crioSupSetupArgs[3] = { &crioSupSetupArg0, &crioSupSetupArg1, &crioSupSetupArg2 };
+static const iocshArg * const crioSupSetupArgs[2] = { &crioSupSetupArg0, &crioSupSetupArg1 };
 
-static const iocshFuncDef crioSupSetupFuncDef = { "crioSupSetup", 3, crioSupSetupArgs };
+static const iocshFuncDef crioSupSetupFuncDef = { "crioSupSetup", 2, crioSupSetupArgs };
 
 static void crioSupSetupCallFunc(const iocshArgBuf *args) {
     crioSupSetup(args[0].sval, args[1].ival);
