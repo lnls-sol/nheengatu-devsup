@@ -75,7 +75,7 @@ static long crio_ao_init_rec(aoRecord *BaseRecord) {
         return -1;
     }
     BaseRecord->dpvt = ctx;
-    return 0;
+    return 2;
 }
 
 static long crio_ao_write(aoRecord *BaseRecord) {

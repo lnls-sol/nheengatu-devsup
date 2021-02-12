@@ -67,7 +67,7 @@ static long crio_bo_init_rec(boRecord *BaseRecord) {
         return -1;
     }
     BaseRecord->dpvt = (void *) ctx;
-    return 0;
+    return 2;
 }
 
 static long crio_bo_write(boRecord *BaseRecord) {
