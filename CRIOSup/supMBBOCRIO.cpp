@@ -73,7 +73,7 @@ static long crio_mbbo_init_rec(mbboRecord *BaseRecord) {
         return -1;
     }
     BaseRecord->dpvt = ctx;
-    return 0;
+    return 2;
 }
 
 static long crio_mbbo_write(mbboRecord *BaseRecord) {
